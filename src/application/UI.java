@@ -70,36 +70,41 @@ public class UI {
 
 	public static void printBoard(ChessPiece[][] pieces) {
 		for (int i = 0; i < pieces.length; i++) {
-			System.out.print((8 - i) + " ");
+			System.out.print(ANSI_RED + (8 - i) + " "  + ANSI_RESET);
 			for (int x = 0; x < pieces.length; x++) {
 				printPiece(pieces[i][x], false);
 			}
 			System.out.println();
 		}
 
-		System.out.println("  a b c d e f g h");
+		System.out.println(ANSI_RED + "  a b c d e f g h" + ANSI_RESET);
 
 	}
 	
 	public static void printBoard(ChessPiece[][] pieces, boolean[][] possibleMoves) {
 		for (int i = 0; i < pieces.length; i++) {
-			System.out.print((8 - i) + " ");
+			System.out.print(ANSI_RED + (8 - i) + " "  + ANSI_RESET);
 			for (int x = 0; x < pieces.length; x++) {
 				printPiece(pieces[i][x], possibleMoves[i][x]);
 			}
 			System.out.println();
 		}
 
-		System.out.println("  a b c d e f g h");
+		System.out.println(ANSI_RED + "  a b c d e f g h" + ANSI_RESET);
 
 	}
 
 	private static void printPiece(ChessPiece piece, boolean background) {
+		String color; 
 		if(background) {
-			System.out.print(ANSI_GREEN_BACKGROUND);
-		}
+			color = ANSI_GREEN;
+			
+		}else {
+			color = ANSI_WHITE;
+		}	
+		
 		if (piece == null) {
-			System.out.print("-" + ANSI_RESET);
+			System.out.print(color	+ "□" + ANSI_RESET);
 		} else {
 			if (piece.getColor() == Color.WHITE) {
 				System.out.print(ANSI_WHITE + piece + ANSI_RESET);
@@ -118,16 +123,24 @@ public class UI {
 		List<ChessPiece> black = captured.parallelStream()
 				.filter(x -> x.getColor() == Color.BLACK).collect(Collectors.toList());
 		
-		System.out.println("Peças capituradas");
-		System.out.print("White : ");
+		System.out.println("Peças capturadas");	
+		System.out.print("White : [ ");
 		System.out.print(ANSI_WHITE);
-		System.out.println(Arrays.toString(white.toArray()));
+		for (ChessPiece chessPiece : white) {
+			System.out.print(chessPiece.toString() + " ");	
+		}
+		System.out.print(" ]");
 		System.out.print(ANSI_RESET);
+		System.out.println("");
 		
-		System.out.print("Black : ");
 		System.out.print(ANSI_BLUE);
-		System.out.println(Arrays.toString(black.toArray()));
+		System.out.print("Black : [ ");
+		for (ChessPiece chessPiece : black) {
+			System.out.print(chessPiece.toString() + " ");	
+		}
+		System.out.print(" ]");
 		System.out.print(ANSI_RESET);
+		System.out.println("");
 		
 	}
 
