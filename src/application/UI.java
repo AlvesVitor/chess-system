@@ -32,6 +32,7 @@ public class UI {
 	public static final String ANSI_WHITE_BACKGROUND = "\u001B[47m";
 	
 	public static final String[] numbers = {"➊", "➋", "➌", "➍", "➎", "➏", "➐", "➑"};
+	public static final String letters = "  🅰 🅱 🅲 🅳 🅴 🅵 🅶 🅷";
 
 	public static void clearScreen() {
 		System.out.print("\033[H\033[2J");
@@ -70,7 +71,11 @@ public class UI {
 
 		} else {
 			System.out.println("Cheque Mate!");
-			System.out.println("Vencedor: " + chessMatch.getCurrentPlayer());
+			if (chessMatch.getCurrentPlayer() == Color.BLACK) {
+				System.out.println("Vencedor: Pretas 🎖" );
+			} else {
+				System.out.println("Vencedor: Brancas 🎖");
+			}
 		}
 	}
 
@@ -90,7 +95,7 @@ public class UI {
 			System.out.println();
 		}
 
-		System.out.println(ANSI_RED + "  🅰 🅱 🅲 🅳 🅴 🅵 🅶 🅷" + ANSI_RESET);
+		System.out.println(ANSI_RED + letters + ANSI_RESET);
 
 	}
 
@@ -110,7 +115,7 @@ public class UI {
 			System.out.println();
 		}
 
-		System.out.println(ANSI_RED + "  🅰 🅱 🅲 🅳 🅴 🅵 🅶 🅷" + ANSI_RESET);
+		System.out.println(ANSI_RED + letters + ANSI_RESET);
 
 	}
 
@@ -134,7 +139,7 @@ public class UI {
 				if (piece.getColor() == Color.WHITE) {
 					System.out.print(ANSI_WHITE + piece + ANSI_RESET);
 				} else {
-					System.out.print(ANSI_BLACK + piece + ANSI_RESET);
+					System.out.print(ANSI_BLUE + piece + ANSI_RESET);
 				}
 			}
 
@@ -159,7 +164,7 @@ public class UI {
 			if (piece.getColor() == Color.WHITE) {
 				System.out.print(ANSI_WHITE + piece + ANSI_RESET);
 			} else {
-				System.out.print(ANSI_BLACK + piece + ANSI_RESET);
+				System.out.print(ANSI_BLUE + piece + ANSI_RESET);
 			}
 
 		}
@@ -183,7 +188,7 @@ public class UI {
 		System.out.print(ANSI_RESET);
 		System.out.println("");
 
-		System.out.print(ANSI_BLACK);
+		System.out.print(ANSI_BLUE);
 		System.out.print("Pretas : [ ");
 		for (ChessPiece chessPiece : black) {
 			System.out.print(chessPiece.toString() + " ");
